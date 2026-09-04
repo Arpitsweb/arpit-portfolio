@@ -1660,3 +1660,239 @@ select:focus-visible {
     width: 100%;
   }
 }
+/* =========================================
+   GLASS SHUTTER INTRO
+========================================= */
+
+.page-shutter {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: flex;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    background: rgba(11, 11, 11, 0.25);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: shutterBackground 1.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+
+}
+
+
+/* LEFT + RIGHT GLASS PANELS */
+
+.shutter-panel {
+    position: absolute;
+
+    top: 0;
+    width: 50%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.08),
+            rgba(255,255,255,0.015)
+        );
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 0 80px rgba(0,0,0,0.25);
+
+}
+
+
+/* LEFT */
+
+.shutter-left {
+    left: 0;
+
+    animation:
+        shutterLeft 1.5s
+        cubic-bezier(0.76, 0, 0.24, 1)
+        0.35s
+        forwards;
+}
+
+
+/* RIGHT */
+
+.shutter-right {
+    right: 0;
+
+    animation:
+        shutterRight 1.5s
+        cubic-bezier(0.76, 0, 0.24, 1)
+        0.35s
+        forwards;
+}
+
+
+/* CENTER CONTENT */
+
+.shutter-content {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 3;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 18px;
+
+    white-space: nowrap;
+
+    animation:
+        shutterContent 0.8s
+        ease
+        0.8s
+        forwards;
+}
+
+
+.shutter-content p {
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: clamp(40px, 7vw, 90px);
+
+    font-weight: 700;
+
+    letter-spacing: -4px;
+
+    color: white;
+
+    margin: 0;
+}
+
+
+.shutter-content span {
+    font-family: "DM Sans", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    letter-spacing: 3px;
+
+    color: var(--accent);
+}
+
+
+/* SMALL HORIZONTAL LINES */
+
+.shutter-line {
+    width: 70px;
+    height: 1px;
+
+    background: rgba(255,255,255,0.35);
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes shutterLeft {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+
+}
+
+
+@keyframes shutterRight {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+
+}
+
+
+@keyframes shutterContent {
+
+    0% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(1);
+    }
+
+    55% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(-50%, -50%)
+            scale(0.92);
+    }
+
+}
+
+
+@keyframes shutterBackground {
+
+    0% {
+        opacity: 1;
+    }
+
+    85% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .shutter-content p {
+        font-size: 55px;
+        letter-spacing: -3px;
+    }
+
+    .shutter-content span {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+
+    .shutter-line {
+        width: 45px;
+    }
+
+}

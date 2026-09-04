@@ -1,4 +1,21 @@
+// =========================================
+// GLASS SHUTTER INTRO
+// =========================================
 
+window.addEventListener("load", () => {
+
+    const pageShutter =
+        document.getElementById("pageShutter");
+
+    if (!pageShutter) return;
+
+    setTimeout(() => {
+
+        pageShutter.remove();
+
+    }, 2200);
+
+});
 // ===============================
 // ARPIT PORTFOLIO - INTERACTIONS
 // ===============================
